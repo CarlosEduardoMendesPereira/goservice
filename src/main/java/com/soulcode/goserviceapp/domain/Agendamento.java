@@ -11,41 +11,34 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Agendamentos")
+@Table(name = "agendamentos")
 public class Agendamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotNull(message = "O campo do agendamento referente ao cliente não pode ser vazio.")
     @ManyToOne
     @JoinColumn(nullable = false)
     private Cliente cliente;
-
     @NotNull(message = "O campo do agendamento referente ao prestador não pode ser vazio.")
     @ManyToOne
     @JoinColumn(nullable = false)
     private Prestador prestador;
-
     @NotNull(message = "O campo do agendamento referente ao serviço não pode ser vazio.")
     @ManyToOne
     @JoinColumn(nullable = false)
     private Servico servico;
-
-    @NotNull(message = "O status do agendamento não pode ser vazio")
+    @NotNull(message = "O status do agendamento não pode ser vazio.")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusAgendamento statusAgendamento;
-
     @NotNull(message = "A data do agendamento não pode ser vazia.")
     @Column(nullable = false)
-    private LocalDate data;
-
-    @NotNull(message = "A hora do agendamento não pode ser vazia")
+    private  LocalDate data;
+    @NotNull(message = "A hora do agendamento não pode ser vazia.")
     @Column(nullable = false)
     private LocalTime hora;
-
     @CreationTimestamp
     @Column(nullable = false)
     private LocalDateTime dataHoraRegistro;
@@ -129,7 +122,7 @@ public class Agendamento {
     }
 
     public boolean isCancelable(){
-        return statusAgendamento.equals((StatusAgendamento.AGUARDANDO_CONFIRMACAO);
+        return statusAgendamento.equals(StatusAgendamento.AGUARDANDO_CONFIRMACAO);
     }
 
     public boolean isConfirmable(){
@@ -150,7 +143,8 @@ public class Agendamento {
                 Objects.equals(prestador, agendamento.prestador) &&
                 Objects.equals(servico, agendamento.servico) &&
                 statusAgendamento == agendamento.statusAgendamento &&
-                Objects.equals(data, agendamento.data) && Objects.equals(hora, agendamento.hora) &&
+                Objects.equals(data, agendamento.data) &&
+                Objects.equals(hora, agendamento.hora) &&
                 Objects.equals(dataHoraRegistro, agendamento.dataHoraRegistro);
     }
 
