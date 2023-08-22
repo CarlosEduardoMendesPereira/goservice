@@ -17,6 +17,9 @@ public class ClienteController {
     public String agendar() {
         return "agendarServico";
     }
-}
 
-// teste git
+    @GetMapping(value = "/historico")
+    public String historico() {
+        return "historicoCliente";
+    }
+}
