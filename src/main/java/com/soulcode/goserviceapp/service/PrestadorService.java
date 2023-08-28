@@ -67,4 +67,5 @@ public class PrestadorService {
     public List<Prestador> findByServicoId(Long id){
         return prestadorRepository.findByServicoId(id);
     }
+
 }
